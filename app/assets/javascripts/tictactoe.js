@@ -105,7 +105,7 @@ function saveGame() {
         button.innerText = ID;
         button.addEventListener('click', fetchGame);
         li.appendChild(button);
-        gamesDiv.appendChild(button);
+        gamesDiv.appendChild(li);
       });
   } else {
     // patch '/games/${ID}' with body {"state": stateArr}
@@ -152,7 +152,7 @@ function resetBoard(state) {
   if (typeof state === 'undefined') {
     state = Array(9).fill('');
     turn = 0;
-    ID = null;
+    ID = undefined;
   }
   turn = 0;
   for(i in td) {
