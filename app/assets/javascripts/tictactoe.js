@@ -171,7 +171,6 @@ function checkWinner() {
 
   for(combo of WINCOMBOS) {
     if (valuesMatch(combo)) {
-      console.log('winner')
       won = true;
       setMessage(`Player ${td[combo[0]].innerText} won!`);
       break;
