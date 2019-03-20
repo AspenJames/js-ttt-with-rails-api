@@ -117,7 +117,7 @@ function doTurn(el) {
 }
 
 function updateState(el) {
-  // TODO
+  el.innerText = player();
 }
 
 function resetBoard(state) {
@@ -154,7 +154,12 @@ function checkWinner() {
 }
 
 function valuesMatch(combo) {
-  return // TODO
+  return td[combo[0]].innerText !== '' && td[combo[0]].innerText === td[combo[1]].innerText && td[combo[1]].innerText === td[combo[2]].innerText;
+  //return combo.every(function(value, index) {
+    //console.log("td[value + index].innerText", td[value + index].innerText);
+    //console.log("player()", player());
+    //return td[value + index].innerText === player()
+  //});
 }
 
 function player() {
