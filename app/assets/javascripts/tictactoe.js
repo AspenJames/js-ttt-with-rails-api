@@ -51,13 +51,11 @@ function attachEventListeners() {
         // Only append games not currently listed
         for(let i = buttonCount; i < gameCount;  i++) {
           let gameId = json["data"][i]["id"];
-          let li = document.createElement('li');
-          button = document.createElement('button');
-          button.setAttribute('data-id', gameId);
-          button.innerText = gameId;
-          button.addEventListener('click', fetchGame);
-          li.appendChild(button);
-          gamesDiv.appendChild(li);
+          // TODO: 
+          // Create li
+          // Create button
+          // Attach click event listener to button
+          // Append to DOM
         }
       });
   })
@@ -75,51 +73,25 @@ function attachEventListeners() {
 function fetchGame(e) {
   e.stopPropagation();
   ID = e.target.dataset['id'];
-  fetch(`http://localhost:3000/games/${ID}`).then(resp => resp.json())
-    .then(json => resetBoard(json["data"]["attributes"]["state"]));
+  // TODO:
+  // fetch `/games/${ID}`
+  // then resetBoard with returned state
 }
 
 function saveGame() {
   let stateArr = [];
   for(el of td) {
-    stateArr.push(el.innerText);
+    //TODO: fill state array with board data
   }
-  let state = { state: stateArr };
 
   if (typeof ID === 'undefined') {
-    // post to '/games' with body of {"state": stateArr}
+    // TODO:
+    // post to '/games' with params "state"
     // set ID with return data id
-    fetch('http://localhost:3000/games', {
-      headers: {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      method: "POST",
-      body: JSON.stringify(state)
-    }).then(resp => resp.json())
-      .then(json => {
-        ID = json["data"]["id"];
-        let li = document.createElement('li');
-        button = document.createElement('button');
-        button.setAttribute('data-id', ID);
-        button.innerText = ID;
-        button.addEventListener('click', fetchGame);
-        li.appendChild(button);
-        gamesDiv.appendChild(button);
-      });
+    // append saved game button to DOM
   } else {
-    // patch '/games/${ID}' with body {"state": stateArr}
-    fetch(`http://localhost:3000/games/${ID}`, {
-      headers:  {
-        "Accept": "application/json",
-        "Content-Type": "application/json"
-      },
-      method: "PATCH",
-      body: JSON.stringify(state)
-    }).then(resp => resp.json())
-      .then(json =>  {
-        console.log(json);
-      });
+    // TODO:
+    // patch '/games/${ID}' with params "state"
   }
 }
 /*===== api calls =====*/
@@ -145,18 +117,19 @@ function doTurn(el) {
 }
 
 function updateState(el) {
-  el.innerText = player();
+  // TODO
 }
 
 function resetBoard(state) {
   if (typeof state === 'undefined') {
     state = Array(9).fill('');
-    turn = 0;
     ID = null;
   }
   turn = 0;
   for(i in td) {
-    td[i].innerText = state[i];
+    // TODO: Set board with state array
+    // this makes sure our turn variable
+    // holds the proper amount
     (state[i] !== '') && turn++;
   }
   messageContainer.innerText = '';
@@ -181,7 +154,7 @@ function checkWinner() {
 }
 
 function valuesMatch(combo) {
-  return td[combo[0]].innerText !== '' && td[combo[0]].innerText === td[combo[1]].innerText && td[combo[1]].innerText === td[combo[2]].innerText;
+  return // TODO
 }
 
 function player() {
